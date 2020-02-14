@@ -12,7 +12,8 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            
+            var game = new GameUI();
+            game.Run();
         }
     }
 }

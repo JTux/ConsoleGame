@@ -8,19 +8,25 @@ namespace Game.UI.Components
 {
     public class MenuItem
     {
-        public Func<bool> Action { get; set; }
+        public Action Action { get; set; }
 
-        public MenuItem(string text, bool isEnabled, Func<bool> menuAction)
+        public MenuItem(string text, params Action[] menuActions)
         {
             Text = text;
+            IsEnabled = true;
+
+            foreach(var action in menuActions)
+                Action += action;
+        }
+        public MenuItem(string text, bool isEnabled, params Action[] menuActions) : this(text, menuActions)
+        {
             IsEnabled = isEnabled;
-            Action = menuAction;
         }
 
         public string Text { get; set; }
         public bool IsEnabled { get; set; }
 
-        public bool Activate() => Action.Invoke();
-        public void SetAction(Func<bool> newAction) => Action = newAction;
+        public void Activate() => Action.Invoke();
+        public void SetAction(Action newAction) => Action = newAction;
     }
 }

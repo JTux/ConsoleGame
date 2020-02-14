@@ -16,5 +16,7 @@ namespace Game.UI.Components
             get => _content.Replace(';', '\n');
             private set => _content = value;
         }
+
+        public override string ToString() => Content;
     }
 }
