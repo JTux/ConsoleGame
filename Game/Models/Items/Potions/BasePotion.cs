@@ -9,8 +9,8 @@ namespace Game.Models.Items.Potions
 {
     public abstract class BasePotion : Item
     {
-        private readonly string _name;
-        private readonly int _id;
+        protected readonly string _name;
+        protected readonly int _id;
 
         public BasePotion(int id, string name, int value)
         {

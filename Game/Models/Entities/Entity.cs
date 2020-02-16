@@ -51,7 +51,7 @@ namespace Game.Models.Entities
         {
             get
             {
-                var armorHealth = Inventory.Where(i => i is IArmor).Select(i => i as IArmor).Sum(a => a.BonusHealth);
+                var armorHealth = Inventory.Where(i => i is IArmor && ((IArmor)i).IsEquipped).Select(i => i as IArmor).Sum(a => a.BonusHealth);
                 return BaseHealth + armorHealth;
             }
         }

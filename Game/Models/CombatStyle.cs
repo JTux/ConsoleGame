@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Models.Items.Interfaces
+namespace Game.Models
 {
-    public interface IArmor
+    public enum CombatStyle
     {
-        bool IsEquipped { get; }
-        int BonusHealth { get; }
+        Melee, Ranged, Mage
     }
 }

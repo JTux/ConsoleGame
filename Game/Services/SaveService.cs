@@ -61,7 +61,7 @@ namespace Game.Services
             characterFile.Write(GetSaveString(player));
             characterFile.Close();
 
-            SaveGameCount++;
+            SaveGameCount = Directory.GetFiles("./Files/Saves", "*.txt").Length;
             UpdateSettings();
         }
 

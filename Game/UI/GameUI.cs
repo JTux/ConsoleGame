@@ -1,5 +1,6 @@
 ﻿using Game.Data;
 using Game.Extensions;
+using Game.Models.Entities;
 using Game.Models.Items;
 using Game.Services;
 using Game.UI.Components;
@@ -15,14 +16,14 @@ namespace Game.UI
     {
         private bool _runStatus = true;
         private Menu _mainMenu;
-        private SaveService _saveService = new SaveService();
+        private readonly SaveService _saveService = new SaveService();
 
         public void Run()
         {
-            SetMenu();
 
             while (_runStatus)
             {
+                SetMenu();
                 PrintMenu();
                 GetPlayerAction();
             }
@@ -68,6 +69,9 @@ namespace Game.UI
 
         private void StartNewGame()
         {
+            var player = new Player(1, "Drofsnar");
+            _saveService.SaveGame(player);
+
             Console.WriteLine("New");
         }
 

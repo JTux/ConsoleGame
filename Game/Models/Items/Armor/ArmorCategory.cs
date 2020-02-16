@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Models.Items.Interfaces
+namespace Game.Models.Items.Armor
 {
-    public interface IArmor
+    public enum ArmorCategory
     {
-        bool IsEquipped { get; }
-        int BonusHealth { get; }
+        Head, Chest, Legs, Hands, Feet
     }
 }

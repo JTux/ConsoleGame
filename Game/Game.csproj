@@ -48,12 +48,17 @@
     <Compile Include="Data\SkillIndex.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\MenuConsoleExtensions.cs" />
+    <Compile Include="Models\CombatStyle.cs" />
     <Compile Include="Models\Entities\Player.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
+    <Compile Include="Models\Items\Armor\ArmorCategory.cs" />
+    <Compile Include="Models\Items\Armor\Armor.cs" />
     <Compile Include="Models\Items\Interfaces\IArmor.cs" />
     <Compile Include="Models\Items\Item.cs" />
     <Compile Include="Data\ItemIndex.cs" />
     <Compile Include="Models\Items\Potions\BasePotion.cs" />
+    <Compile Include="Models\Items\Potions\HealthPotion.cs" />
+    <Compile Include="Models\Items\Potions\Poison.cs" />
     <Compile Include="Models\Skills\Skill.cs" />
     <Compile Include="Models\Storage\Container.cs" />
     <Compile Include="Program.cs" />
