@@ -1,5 +1,7 @@
-﻿using Game.Extensions;
+﻿using Game.Data;
+using Game.Extensions;
 using Game.Models.Items;
+using Game.Services;
 using Game.UI.Components;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,7 @@ namespace Game.UI
     {
         private bool _runStatus = true;
         private Menu _mainMenu;
+        private SaveService _saveService = new SaveService();
 
         public void Run()
         {
@@ -27,11 +30,9 @@ namespace Game.UI
 
         private void SetMenu()
         {
-            var saveFileCount = 0;
-
             var options = new List<MenuItem>
             {
-                new MenuItem("Continue Game", saveFileCount > 0, LoadGame),
+                new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame),
                 new MenuItem("New Game", StartNewGame),
                 new MenuItem("Exit", ExitGame),
             };

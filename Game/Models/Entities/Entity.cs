@@ -15,8 +15,9 @@ namespace Game.Models.Entities
         protected int _baseHealth;
         protected int _hpPerLevel;
 
-        public Entity(string name, int level, int baseHealth, int hpPerLevel)
+        public Entity(int id, string name, int level, int baseHealth, int hpPerLevel)
         {
+            Id = id;
             Name = name;
             Level = level;
 
@@ -24,20 +25,28 @@ namespace Game.Models.Entities
             _hpPerLevel = hpPerLevel;
 
             _currentHealth = MaxHealth;
-
-            CalcXP();
         }
-        public Entity(string name, int level, int baseHealth, int hpPerLevel, List<Item> inventory)
-            : this(name, level, baseHealth, hpPerLevel)
+        public Entity(int id, string name, int level, int baseHealth, int hpPerLevel, int gold, List<Item> inventory, List<Skill> skills)
+            : this(id, name, level, baseHealth, hpPerLevel)
         {
+            Gold = gold;
             Inventory = inventory;
+            Skills = skills;
+
             _currentHealth = MaxHealth;
         }
+        public Entity(int id, string name, int level, int xp, int baseHealth, int health, int hpPerLevel, int gold, List<Item> inventory, List<Skill> skills)
+            : this(id, name, level, baseHealth, hpPerLevel, gold, inventory, skills)
+        {
+            Health = health;
+            XP = xp;
+        }
 
+        public int Id { get; protected set; }
         public string Name { get; set; }
         public int Level { get; set; } = 1;
         public double XP { get; set; } = 0;
-        public int BaseHealth => _baseHealth + (Level * _hpPerLevel);
+        public int BaseHealth => _baseHealth + ((Level - 1) * _hpPerLevel);
         public int MaxHealth
         {
             get
@@ -69,13 +78,8 @@ namespace Game.Models.Entities
             }
         }
         public bool IsAlive => Health > 0;
+        public int Gold { get; set; }
         public List<Item> Inventory { get; set; } = new List<Item>();
-        public List<Skill> Skills { get; set; }
-
-
-        private void CalcXP()
-        {
-            XP = Level * (15 + (5 * (Level)));
-        }
+        public List<Skill> Skills { get; set; } = new List<Skill>();
     }
 }

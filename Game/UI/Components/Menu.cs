@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,7 @@ namespace Game.UI.Components
         public Menu() { }
         public Menu(string header)
         {
-            var headerTextDictionary = new HeaderTextIndex();
-            Title = new Title(headerTextDictionary[header]);
+            Title = new Title(HeaderTextIndex.GetHeaderByKey(header));
         }
         public Menu(string header, List<MenuItem> options) : this(header) => Options = options;
 
