@@ -1,4 +1,5 @@
 ﻿using Game.Extensions;
+using Game.Models.Items;
 using Game.UI.Components;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,8 @@ namespace Game.UI
 
             while (_runStatus)
             {
-                Console.Clear();
-                _mainMenu.Display();
-                GetAction();
+                PrintMenu();
+                GetPlayerAction();
             }
         }
 
@@ -31,23 +31,22 @@ namespace Game.UI
 
             var options = new List<MenuItem>
             {
-                new MenuItem("Continue Game", saveFileCount > 0, GetLoadGames, Pause),
-                new MenuItem("New Game", GetNewGame, Pause),
+                new MenuItem("Continue Game", saveFileCount > 0, LoadGame),
+                new MenuItem("New Game", StartNewGame),
                 new MenuItem("Exit", ExitGame),
             };
 
             _mainMenu = new Menu("Title", options);
         }
 
-        private void GetAction()
+        private void GetPlayerAction()
         {
             int menuOption;
             var options = _mainMenu.Options.Where(o => o.IsEnabled).ToList();
 
             while (!int.TryParse(Console.ReadLine(), out menuOption) || menuOption > options.Count || menuOption < 1)
             {
-                Console.Clear();
-                _mainMenu.Display();
+                PrintMenu();
                 Console.WriteLine("\nPlease select a valid option.");
             }
 
@@ -55,12 +54,18 @@ namespace Game.UI
             options[menuOption - 1].Activate();
         }
 
-        private void GetLoadGames()
+        private void PrintMenu()
+        {
+            Console.Clear();
+            _mainMenu.Display();
+        }
+
+        private void LoadGame()
         {
             Console.WriteLine("Load");
         }
 
-        private void GetNewGame()
+        private void StartNewGame()
         {
             Console.WriteLine("New");
         }
