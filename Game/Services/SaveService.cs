@@ -128,13 +128,13 @@ namespace Game.Services
             var gold = int.Parse(saveValues.GetValue("Gold"));
 
             var inventoryStr = saveValues.GetValue("Inventory");
-            var itemIds = inventoryStr.Split(',');
+            var itemIds = inventoryStr.Split(',').Where(s => s != "");
             var inventory = new List<Item>();
             foreach (var itemId in itemIds)
                 inventory.Add(ItemIndex.GetItemById(int.Parse(itemId)));
 
             var skillsStr = saveValues.GetValue("Skills");
-            var skillIds = skillsStr.Split(',');
+            var skillIds = skillsStr.Split(',').Where(s => s != "");
             var skills = new List<Skill>();
             foreach (var skillId in skillIds)
                 skills.Add(SkillIndex.GetSkillbyId(int.Parse(skillId)));

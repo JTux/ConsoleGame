@@ -33,8 +33,8 @@ namespace Game.UI
         {
             var options = new List<MenuItem>
             {
-                new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame),
-                new MenuItem("New Game", StartNewGame),
+                new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame, Pause),
+                new MenuItem("New Game", StartNewGame, Pause),
                 new MenuItem("Exit", ExitGame),
             };
 
@@ -69,9 +69,6 @@ namespace Game.UI
 
         private void StartNewGame()
         {
-            var player = new Player(1, "Drofsnar");
-            _saveService.SaveGame(player);
-
             Console.WriteLine("New");
         }
 
