@@ -9,12 +9,12 @@ namespace Game.Extensions
 {
     public static class MenuConsoleExtensions
     {
-        public static void DisplayTitles(this Menu menu)
+        public static void DisplayTitles(this Menu menu) => menu.DisplayTitles(Console.ForegroundColor);
+        public static void DisplayTitles(this Menu menu, ConsoleColor subtitleColor)
         {
             Console.WriteLine(menu.Title + "\n");
-
             if (menu.Subtitle != null)
-                menu.Subtitle.Display(ConsoleColor.Red);
+                menu.Subtitle.Display(subtitleColor);
         }
 
         public static void DisplayOptions(this Menu menu, int activeId, int cursorPos)
@@ -44,19 +44,21 @@ namespace Game.Extensions
             }
         }
 
-        public static void GetPlayerAction(this Menu menu)
+        public static void GetPlayerAction(this Menu menu) => menu.GetPlayerAction(Console.ForegroundColor);
+        public static void GetPlayerAction(this Menu menu, ConsoleColor subtitleColor)
         {
-            var menuOption = menu.GetSelectedAction();
+            var menuOption = menu.GetSelectedAction(subtitleColor);
             var options = menu.Options.Where(o => o.IsEnabled).ToList();
             options[menuOption].Activate();
         }
 
-        public static int GetSelectedAction(this Menu menu)
+        public static int GetSelectedAction(this Menu menu) => menu.GetSelectedAction(Console.ForegroundColor);
+        public static int GetSelectedAction(this Menu menu, ConsoleColor subtitleColor)
         {
             Console.Clear();
             var selectionId = 0;
 
-            menu.DisplayTitles();
+            menu.DisplayTitles(subtitleColor);
 
             var cursorPos = Console.CursorTop;
             while (true)

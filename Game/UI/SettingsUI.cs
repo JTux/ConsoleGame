@@ -59,7 +59,7 @@ namespace Game.UI
 
             while (runReset)
             {
-                resetMenu.GetPlayerAction();
+                resetMenu.GetPlayerAction(subtitleColor: ConsoleColor.Red);
             }
         }
 
