@@ -22,7 +22,7 @@ namespace Game.UI
             while (_runStatus)
             {
                 SetMenu();
-                GetPlayerAction();
+                _menu.GetPlayerAction();
                 Console.Clear();
             }
         }
@@ -33,19 +33,11 @@ namespace Game.UI
             {
                 new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame),
                 new MenuItem("New Game", StartNewGame),
+                new MenuItem("Settings", RunSettings),
                 new MenuItem("Exit", ExitGame),
             };
 
             _menu = new Menu("title", options);
-        }
-
-        private void GetPlayerAction()
-        {
-            var menuOption = _menu.GetSelectedAction();
-
-            var options = _menu.Options.Where(o => o.IsEnabled).ToList();
-
-            options[menuOption].Activate();
         }
 
         private void LoadGame()
@@ -60,18 +52,10 @@ namespace Game.UI
             if (player != null)
             {
                 _saveService.SaveGame(player);
-
             }
-
-            Console.WriteLine();
         }
 
+        private void RunSettings() => new SettingsUI(_saveService, false).Run();
         private void ExitGame() => _runStatus = false;
-
-        private void Pause()
-        {
-            Console.WriteLine("Press any key to continue...");
-            Console.ReadKey(true);
-        }
     }
 }

@@ -8,9 +8,10 @@ namespace Game.UI.Components
 {
     public class Title
     {
+        private string _content;
+        
         public Title(string content) => _content = content;
 
-        private string _content;
         public string Content
         {
             get => _content.Replace(';', '\n');

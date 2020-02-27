@@ -20,8 +20,7 @@ namespace Game.UI
         public override Player Run()
         {
             SetMenu();
-            var actionId = _menu.GetSelectedAction();
-            _menu.Options[actionId].Action.Invoke();
+            _menu.GetPlayerAction();
             return _player;
         }
 

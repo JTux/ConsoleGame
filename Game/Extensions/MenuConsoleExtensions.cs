@@ -9,25 +9,15 @@ namespace Game.Extensions
 {
     public static class MenuConsoleExtensions
     {
-        public static void Display(this Menu menu)
+        public static void DisplayTitles(this Menu menu)
         {
             Console.WriteLine(menu.Title + "\n");
 
-            var actionNumber = 1;
-
-            for (int i = 0; i < menu.Options.Count; i++)
-            {
-                if (menu.Options[i].IsEnabled)
-                    Console.WriteLine($"{actionNumber++}) " + menu.Options[i].Text);
-            }
+            if (menu.Subtitle != null)
+                menu.Subtitle.Display(ConsoleColor.Red);
         }
 
-        public static void DisplayTitle(this Menu menu)
-        {
-            Console.WriteLine(menu.Title + "\n");
-        }
-
-        public static void Display(this Menu menu, int activeId, int cursorPos)
+        public static void DisplayOptions(this Menu menu, int activeId, int cursorPos)
         {
             var actionNumber = 1;
             Console.CursorTop = cursorPos;
@@ -54,16 +44,24 @@ namespace Game.Extensions
             }
         }
 
+        public static void GetPlayerAction(this Menu menu)
+        {
+            var menuOption = menu.GetSelectedAction();
+            var options = menu.Options.Where(o => o.IsEnabled).ToList();
+            options[menuOption].Activate();
+        }
+
         public static int GetSelectedAction(this Menu menu)
         {
             Console.Clear();
             var selectionId = 0;
 
-            menu.DisplayTitle();
+            menu.DisplayTitles();
+
             var cursorPos = Console.CursorTop;
             while (true)
             {
-                menu.Display(selectionId, cursorPos);
+                menu.DisplayOptions(selectionId, cursorPos);
 
                 var activeOptionCount = menu.Options.Where(o => o.IsEnabled).Count();
 

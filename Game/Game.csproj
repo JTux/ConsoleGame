@@ -48,6 +48,7 @@
     <Compile Include="Data\SkillIndex.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\MenuConsoleExtensions.cs" />
+    <Compile Include="Extensions\TitleConsoleExtensions.cs" />
     <Compile Include="Models\CombatStyle.cs" />
     <Compile Include="Models\Entities\Player.cs" />
     <Compile Include="Models\Entities\Entity.cs" />
@@ -67,11 +68,13 @@
     <Compile Include="Services\SaveService.cs" />
     <Compile Include="Services\SettingService.cs" />
     <Compile Include="UI\CharacterCreationUI.cs" />
+    <Compile Include="UI\Components\Subtitle.cs" />
     <Compile Include="UI\GameUI.cs" />
     <Compile Include="Data\HeaderTextIndex.cs" />
     <Compile Include="UI\Components\Menu.cs" />
     <Compile Include="UI\Components\MenuItem.cs" />
     <Compile Include="UI\Components\Title.cs" />
+    <Compile Include="UI\SettingsUI.cs" />
     <Compile Include="UI\VillageUI.cs" />
   </ItemGroup>
   <ItemGroup>
