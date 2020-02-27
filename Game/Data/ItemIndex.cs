@@ -36,9 +36,9 @@ namespace Game.Data
                 { 1, new HealthPotion(1, "Minor Health Potion", 10, 7) },
                 { 2, new HealthPotion(2, "Health Potion", 22, 15) },
                 { 3, new HealthPotion(3, "Major Health Potion", 40, 30) },
-                { 4, new Poison(4, "Major Health Potion", 15, 8) },
-                { 5, new Poison(5, "Major Health Potion", 25, 18) },
-                { 6, new Poison(6, "Major Health Potion", 50, 35) },
+                { 4, new Poison(4, "Minor Poison", 15, 8) },
+                { 5, new Poison(5, "Poison", 25, 18) },
+                { 6, new Poison(6, "Major Poison", 50, 35) },
 
                 //-- Armors
                 // Melee

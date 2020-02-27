@@ -12,54 +12,40 @@ using System.Threading.Tasks;
 
 namespace Game.UI
 {
-    public class GameUI
+    public class GameUI : BaseUI
     {
         private bool _runStatus = true;
-        private Menu _mainMenu;
         private readonly SaveService _saveService = new SaveService();
 
         public void Run()
         {
-
             while (_runStatus)
             {
                 SetMenu();
-                PrintMenu();
                 GetPlayerAction();
+                Console.Clear();
             }
         }
 
-        private void SetMenu()
+        protected override void SetMenu()
         {
             var options = new List<MenuItem>
             {
-                new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame, Pause),
-                new MenuItem("New Game", StartNewGame, Pause),
+                new MenuItem("Continue Game", _saveService.SaveGameCount > 0, LoadGame),
+                new MenuItem("New Game", StartNewGame),
                 new MenuItem("Exit", ExitGame),
             };
 
-            _mainMenu = new Menu("Title", options);
+            _menu = new Menu("title", options);
         }
 
         private void GetPlayerAction()
         {
-            int menuOption;
-            var options = _mainMenu.Options.Where(o => o.IsEnabled).ToList();
+            var menuOption = _menu.GetSelectedAction();
 
-            while (!int.TryParse(Console.ReadLine(), out menuOption) || menuOption > options.Count || menuOption < 1)
-            {
-                PrintMenu();
-                Console.WriteLine("\nPlease select a valid option.");
-            }
+            var options = _menu.Options.Where(o => o.IsEnabled).ToList();
 
-            Console.Clear();
-            options[menuOption - 1].Activate();
-        }
-
-        private void PrintMenu()
-        {
-            Console.Clear();
-            _mainMenu.Display();
+            options[menuOption].Activate();
         }
 
         private void LoadGame()
@@ -69,7 +55,15 @@ namespace Game.UI
 
         private void StartNewGame()
         {
-            Console.WriteLine("New");
+            var player = new CharacterCreationUI(_saveService).Run();
+
+            if (player != null)
+            {
+                _saveService.SaveGame(player);
+
+            }
+
+            Console.WriteLine();
         }
 
         private void ExitGame() => _runStatus = false;
@@ -77,7 +71,7 @@ namespace Game.UI
         private void Pause()
         {
             Console.WriteLine("Press any key to continue...");
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
     }
 }
