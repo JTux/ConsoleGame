@@ -1,5 +1,6 @@
 ﻿using Game.Data;
 using Game.Extensions;
+using Game.Models;
 using Game.Models.Entities;
 using Game.Models.Items;
 using Game.Models.Skills;
@@ -110,6 +111,7 @@ namespace Game.Services
                 $"\n\"Level\":{player.Level};" +
                 $"\n\"XP\":{player.XP};" +
                 $"\n\"BaseHealth\":{player.BaseHealth};" +
+                $"\n\"CombatStyle\":{player.CombatStyle};" +
                 $"\n\"Health\":{player.Health};" +
                 $"\n\"IsAlive\":{player.IsAlive};" +
                 $"\n\"Gold\":{player.Gold};" +
@@ -124,6 +126,7 @@ namespace Game.Services
             var level = int.Parse(saveValues.GetValue("Level"));
             var xp = int.Parse(saveValues.GetValue("XP"));
             var baseHealth = int.Parse(saveValues.GetValue("BaseHealth"));
+            var combatStyle = (CombatStyle)Enum.Parse(typeof(CombatStyle), saveValues.GetValue("CombatStyle"));
             var health = int.Parse(saveValues.GetValue("Health"));
             var gold = int.Parse(saveValues.GetValue("Gold"));
 
@@ -139,7 +142,7 @@ namespace Game.Services
             foreach (var skillId in skillIds)
                 skills.Add(SkillIndex.GetSkillbyId(int.Parse(skillId)));
 
-            return new Player(id, name, level, xp, baseHealth, health, 2, inventory, skills);
+            return new Player(id, name, level, xp, baseHealth, health, 2, inventory, skills) { CombatStyle = combatStyle };
         }
     }
 }

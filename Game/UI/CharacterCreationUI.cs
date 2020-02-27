@@ -1,4 +1,5 @@
 ﻿using Game.Extensions;
+using Game.Models;
 using Game.Models.Entities;
 using Game.Services;
 using Game.UI.Components;
@@ -37,7 +38,41 @@ namespace Game.UI
 
         private void StartNewGame()
         {
-            _player = new Player(_saveService.SaveGameCount + 1, "Phil");
+            _player = CreateNewPlayer();
+        }
+
+        private Player CreateNewPlayer()
+        {
+            Console.Clear();
+            var newGameMenu = new Menu("newGame", new Subtitle("Welcome traveler! What is your name?"));
+            newGameMenu.DisplayTitles();
+
+            var playerName = Console.ReadLine();
+
+            var combatStyle = GetCombatStyle(playerName);
+
+            return new Player(_saveService.SaveGameCount + 1, playerName, combatStyle);
+        }
+
+        private CombatStyle GetCombatStyle(string playerName)
+        {
+            CombatStyle playerCombatStyle = CombatStyle.Mage;
+
+            void SelectMelee() => playerCombatStyle = CombatStyle.Melee;
+            void SelectRanged() => playerCombatStyle = CombatStyle.Ranged;
+            void SelectMage() => playerCombatStyle = CombatStyle.Mage;
+
+            var combatSelectOptions = new List<MenuItem>
+            {
+                new MenuItem("Melee", SelectMelee),
+                new MenuItem("Ranged", SelectRanged),
+                new MenuItem("Mage", SelectMage)
+            };
+
+            var combatSelectMenu = new Menu("newGame", new Subtitle($"It's a pleasure to meet you, {playerName}.\nPlease select a starting combat style. Don't worry, you can change this later."), combatSelectOptions);
+            combatSelectMenu.GetPlayerAction();
+
+            return playerCombatStyle;
         }
 
         private void ExitGame() { }

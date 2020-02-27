@@ -81,5 +81,7 @@ namespace Game.Models.Entities
         public int Gold { get; set; }
         public List<Item> Inventory { get; set; } = new List<Item>();
         public List<Skill> Skills { get; set; } = new List<Skill>();
+
+        public CombatStyle CombatStyle { get; set; }
     }
 }
