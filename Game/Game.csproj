@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Data\EntityIndex.cs" />
     <Compile Include="Data\SkillIndex.cs" />
+    <Compile Include="Data\PlayableZone.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\MenuConsoleExtensions.cs" />
     <Compile Include="Extensions\TitleConsoleExtensions.cs" />

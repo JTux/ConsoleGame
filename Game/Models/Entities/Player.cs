@@ -1,4 +1,5 @@
-﻿using Game.Models.Items;
+﻿using Game.Data;
+using Game.Models.Items;
 using Game.Models.Skills;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,7 @@ namespace Game.Models.Entities
         {
             _hpPerLevel = hpPerLevel;
         }
+
+        public PlayableZone CurrentZone { get; set; }
     }
 }

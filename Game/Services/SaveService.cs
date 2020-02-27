@@ -115,6 +115,7 @@ namespace Game.Services
                 $"\n\"Health\":{player.Health};" +
                 $"\n\"IsAlive\":{player.IsAlive};" +
                 $"\n\"Gold\":{player.Gold};" +
+                $"\n\"CurrentZone\":{player.CurrentZone};" +
                 $"\n\"Inventory\":{items};" +
                 $"\n\"Skills\":{skills}");
         }
@@ -129,6 +130,7 @@ namespace Game.Services
             var combatStyle = (CombatStyle)Enum.Parse(typeof(CombatStyle), saveValues.GetValue("CombatStyle"));
             var health = int.Parse(saveValues.GetValue("Health"));
             var gold = int.Parse(saveValues.GetValue("Gold"));
+            var location = (PlayableZone)Enum.Parse(typeof(PlayableZone), saveValues.GetValue("CurrentZone"));
 
             var inventoryStr = saveValues.GetValue("Inventory");
             var itemIds = inventoryStr.Split(',').Where(s => s != "");
@@ -142,7 +144,11 @@ namespace Game.Services
             foreach (var skillId in skillIds)
                 skills.Add(SkillIndex.GetSkillbyId(int.Parse(skillId)));
 
-            return new Player(id, name, level, xp, baseHealth, health, 2, inventory, skills) { CombatStyle = combatStyle };
+            return new Player(id, name, level, xp, baseHealth, health, 2, inventory, skills)
+            {
+                CombatStyle = combatStyle,
+                CurrentZone = location
+            };
         }
     }
 }

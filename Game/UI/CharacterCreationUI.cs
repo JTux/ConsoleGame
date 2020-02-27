@@ -1,4 +1,5 @@
-﻿using Game.Extensions;
+﻿using Game.Data;
+using Game.Extensions;
 using Game.Models;
 using Game.Models.Entities;
 using Game.Services;
@@ -36,10 +37,7 @@ namespace Game.UI
             _menu = new Menu("newGame", options);
         }
 
-        private void StartNewGame()
-        {
-            _player = CreateNewPlayer();
-        }
+        private void StartNewGame() => _player = CreateNewPlayer();
 
         private Player CreateNewPlayer()
         {
@@ -51,7 +49,7 @@ namespace Game.UI
 
             var combatStyle = GetCombatStyle(playerName);
 
-            return new Player(_saveService.SaveGameCount + 1, playerName, combatStyle);
+            return new Player(_saveService.SaveGameCount + 1, playerName, combatStyle) { CurrentZone = PlayableZone.Village };
         }
 
         private CombatStyle GetCombatStyle(string playerName)
