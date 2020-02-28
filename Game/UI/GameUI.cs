@@ -42,7 +42,35 @@ namespace Game.UI
 
         private void LoadGame()
         {
-            Console.WriteLine("Load");
+            Player player = null;
+            bool loadGame = false;
+
+            var saves = _saveService.GetSaveGames();
+            if (saves.Count > 0)
+            {
+                void SelectSave(int saveNumber)
+                {
+                    loadGame = true;
+                    player = _saveService.LoadGameById(saveNumber);
+                }
+
+                var saveItems = new List<MenuItem>();
+                for (int i = 0; i < saves.Count; i++)
+                {
+                    var save = saves[i];
+                    var menuItem = new MenuItem(
+                        text: $"{save.Name}, a level {save.Level} {save.CombatStyle}.", 
+                        menuActions: () => SelectSave(saves.IndexOf(save) + 1));
+                    saveItems.Add(menuItem);
+                }
+                saveItems.Add(new MenuItem("Return to menu.", () => { }));
+
+                var loadMenu = new Menu("loadGame", new Subtitle("Select a save file."), saveItems);
+                loadMenu.GetPlayerAction();
+            }
+
+            if (loadGame)
+                InitializeGame(player);
         }
 
         private void StartNewGame()
@@ -52,7 +80,14 @@ namespace Game.UI
             if (player != null)
             {
                 _saveService.SaveGame(player);
+                InitializeGame(player);
             }
+        }
+
+        private void InitializeGame(Player player)
+        {
+            Console.WriteLine(player.Name);
+            Console.ReadLine();
         }
 
         private void RunSettings() => new SettingsUI(_saveService, false).Run();

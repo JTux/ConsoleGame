@@ -61,6 +61,7 @@
     <Compile Include="Models\Items\Potions\BasePotion.cs" />
     <Compile Include="Models\Items\Potions\HealthPotion.cs" />
     <Compile Include="Models\Items\Potions\Poison.cs" />
+    <Compile Include="Models\Persistence\SaveGame.cs" />
     <Compile Include="Models\Skills\Skill.cs" />
     <Compile Include="Models\Storage\Container.cs" />
     <Compile Include="Program.cs" />

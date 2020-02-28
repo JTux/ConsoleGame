@@ -3,6 +3,7 @@ using Game.Extensions;
 using Game.Models;
 using Game.Models.Entities;
 using Game.Models.Items;
+using Game.Models.Persistence;
 using Game.Models.Skills;
 using System;
 using System.Collections.Generic;
@@ -67,6 +68,20 @@ namespace Game.Services
         }
 
         // Get Saves
+        public List<SaveGame> GetSaveGames()
+        {
+            var saves = new List<SaveGame>();
+            for (int i = 1; i <= SaveGameCount; i++)
+            {
+                if (File.Exists($"./Files/Saves/Player{i}.txt"))
+                {
+                    var player = LoadGameById(i);
+                    var save = new SaveGame(player.Name, player.Level, player.CombatStyle, player.CurrentZone);
+                    saves.Add(save);
+                }
+            }
+            return saves;
+        }
 
         public void Reset()
         {
