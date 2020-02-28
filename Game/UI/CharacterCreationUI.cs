@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Game.UI
@@ -56,7 +57,7 @@ namespace Game.UI
                 switch (_stage)
                 {
                     case CreationStage.NameSelection:
-                        playerName = GetCharacterName();
+                        playerName = GetCharacterName(null);
                         break;
                     case CreationStage.CombatStyleSelection:
                         combatStyle = GetCombatStyle(playerName);
@@ -72,20 +73,32 @@ namespace Game.UI
             return new Player(_saveService.SaveGameCount + 1, playerName, combatStyle) { CurrentZone = PlayableZone.Village };
         }
 
-        private string GetCharacterName()
+        private string GetCharacterName(string warningMessage)
         {
             Console.Clear();
-            var newGameMenu = new Menu("newGame", new Subtitle("Welcome traveler! What is your name?\nTo exit character creation simply type \"exit\"."));
+            var newGameMenu = new Menu(
+                header: "newGame",
+                subtitle: new Subtitle(
+                    $"Welcome traveler! What is your name?" +
+                    $"\nTo exit character creation simply type \"exit\"." +
+                    (!string.IsNullOrEmpty(warningMessage) ? $"{"\n" + warningMessage}" : "")));
             newGameMenu.DisplayTitles();
-            _stage++;
-            var characterName = Console.ReadLine();
 
-            if (characterName.ToLower() == "exit")
+            _stage++;
+
+            var playerName = Console.ReadLine();
+            if (playerName.ToLower() == "exit")
                 _stage = CreationStage.Exit;
-            else if (string.IsNullOrWhiteSpace(characterName))
+            else if (!CheckForValidName(playerName))
                 _stage = CreationStage.NameSelection;
 
-            return characterName;
+            return (_stage == CreationStage.NameSelection) ? GetCharacterName("Please enter a valid name.") : playerName;
+        }
+
+        private bool CheckForValidName(string name)
+        {
+            var regexItem = new Regex("^[a-zA-Z0-9 ._-]*$");
+            return regexItem.IsMatch(name) && !string.IsNullOrEmpty(name);
         }
 
         private CombatStyle GetCombatStyle(string playerName)
