@@ -8,6 +8,6 @@ namespace Game.Models
 {
     public enum CombatStyle
     {
-        Melee, Ranged, Mage
+        Melee, Ranged, Magic
     }
 }

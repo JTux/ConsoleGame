@@ -76,7 +76,7 @@ namespace Game.Services
                 if (File.Exists($"./Files/Saves/Player{i}.txt"))
                 {
                     var player = LoadGameById(i);
-                    var save = new SaveGame(player.Name, player.Level, player.CombatStyle, player.CurrentZone);
+                    var save = new SaveGame(i, player.Name, player.Level, player.CombatStyle, player.CurrentZone);
                     saves.Add(save);
                 }
             }

@@ -59,8 +59,8 @@ namespace Game.UI
                 {
                     var save = saves[i];
                     var menuItem = new MenuItem(
-                        text: $"{save.Name}, a level {save.Level} {save.CombatStyle}.", 
-                        menuActions: () => SelectSave(saves.IndexOf(save) + 1));
+                        text: $"{save.Name}, a level {save.Level} focusing on {save.CombatStyle}.", 
+                        menuActions: () => SelectSave(save.SaveNumber));
                     saveItems.Add(menuItem);
                 }
                 saveItems.Add(new MenuItem("Return to menu.", () => { }));

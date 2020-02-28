@@ -77,23 +77,23 @@ namespace Game.Data
                 { 33, new Armor(33, "Armored Boots", 10, 100, 35, CombatStyle.Ranged, ArmorCategory.Feet) },
 
                 // Mage
-                { 34, new Armor(34, "Magic Hat", 1, 100, 35, CombatStyle.Mage, ArmorCategory.Head) },
-                { 35, new Armor(35, "Magic Robe", 1, 100, 35, CombatStyle.Mage, ArmorCategory.Chest) },
-                { 36, new Armor(36, "Magic Gloves", 1, 100, 35, CombatStyle.Mage, ArmorCategory.Hands) },
-                { 37, new Armor(37, "Magic Skirt", 1, 100, 35, CombatStyle.Mage, ArmorCategory.Legs) },
-                { 38, new Armor(38, "Magic Boots", 1, 100, 35, CombatStyle.Mage, ArmorCategory.Feet) },
+                { 34, new Armor(34, "Magic Hat", 1, 100, 35, CombatStyle.Magic, ArmorCategory.Head) },
+                { 35, new Armor(35, "Magic Robe", 1, 100, 35, CombatStyle.Magic, ArmorCategory.Chest) },
+                { 36, new Armor(36, "Magic Gloves", 1, 100, 35, CombatStyle.Magic, ArmorCategory.Hands) },
+                { 37, new Armor(37, "Magic Skirt", 1, 100, 35, CombatStyle.Magic, ArmorCategory.Legs) },
+                { 38, new Armor(38, "Magic Boots", 1, 100, 35, CombatStyle.Magic, ArmorCategory.Feet) },
 
-                { 39, new Armor(39, "Elemental Hat", 5, 100, 35, CombatStyle.Mage, ArmorCategory.Head) },
-                { 40, new Armor(40, "Elemental Robe", 5, 100, 35, CombatStyle.Mage, ArmorCategory.Chest) },
-                { 41, new Armor(41, "Elemental Gloves", 5, 100, 35, CombatStyle.Mage, ArmorCategory.Hands) },
-                { 42, new Armor(42, "Elemental Skirt", 5, 100, 35, CombatStyle.Mage, ArmorCategory.Legs) },
-                { 43, new Armor(43, "Elemental Boots", 5, 100, 35, CombatStyle.Mage, ArmorCategory.Feet) },
+                { 39, new Armor(39, "Elemental Hat", 5, 100, 35, CombatStyle.Magic, ArmorCategory.Head) },
+                { 40, new Armor(40, "Elemental Robe", 5, 100, 35, CombatStyle.Magic, ArmorCategory.Chest) },
+                { 41, new Armor(41, "Elemental Gloves", 5, 100, 35, CombatStyle.Magic, ArmorCategory.Hands) },
+                { 42, new Armor(42, "Elemental Skirt", 5, 100, 35, CombatStyle.Magic, ArmorCategory.Legs) },
+                { 43, new Armor(43, "Elemental Boots", 5, 100, 35, CombatStyle.Magic, ArmorCategory.Feet) },
 
-                { 44, new Armor(44, "Mystic Hat", 10, 100, 35, CombatStyle.Mage, ArmorCategory.Head) },
-                { 45, new Armor(45, "Mystic Robe", 10, 100, 35, CombatStyle.Mage, ArmorCategory.Chest) },
-                { 46, new Armor(46, "Mystic Gloves", 10, 100, 35, CombatStyle.Mage, ArmorCategory.Hands) },
-                { 47, new Armor(47, "Mystic Skirt", 10, 100, 35, CombatStyle.Mage, ArmorCategory.Legs) },
-                { 48, new Armor(48, "Mystic Boots", 10, 100, 35, CombatStyle.Mage, ArmorCategory.Feet) },
+                { 44, new Armor(44, "Mystic Hat", 10, 100, 35, CombatStyle.Magic, ArmorCategory.Head) },
+                { 45, new Armor(45, "Mystic Robe", 10, 100, 35, CombatStyle.Magic, ArmorCategory.Chest) },
+                { 46, new Armor(46, "Mystic Gloves", 10, 100, 35, CombatStyle.Magic, ArmorCategory.Hands) },
+                { 47, new Armor(47, "Mystic Skirt", 10, 100, 35, CombatStyle.Magic, ArmorCategory.Legs) },
+                { 48, new Armor(48, "Mystic Boots", 10, 100, 35, CombatStyle.Magic, ArmorCategory.Feet) },
             };
         }
     }
