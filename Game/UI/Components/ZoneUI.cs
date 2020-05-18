@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.Data
+namespace Game.UI.Components
 {
-    public enum PlayableZone
+    public abstract class ZoneUI<T> : BaseUI<T>
     {
-        Village,
-        City,
-        Danger,
-        Exit
+
     }
 }

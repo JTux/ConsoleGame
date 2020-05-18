@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Game.UI
 {
-    public class VillageUI : BaseUI<bool>
+    public class VillageUI : ZoneUI<bool>
     {
         public override bool Run()
         {

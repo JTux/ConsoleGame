@@ -84,11 +84,7 @@ namespace Game.UI
             }
         }
 
-        private void InitializeGame(Player player)
-        {
-            Console.WriteLine(player.Name);
-            Console.ReadLine();
-        }
+        private void InitializeGame(Player player) => new GameService(player).Play();
 
         private void RunSettings() => new SettingsUI(_saveService, false).Run();
         private void ExitGame() => _runStatus = false;
